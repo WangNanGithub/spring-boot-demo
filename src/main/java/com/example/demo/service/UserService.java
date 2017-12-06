@@ -15,17 +15,17 @@ public class UserService implements UserDetailsService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(UserService.class);
 
-    private final UserJPA userJPA;
+    private final UserJPA usersRepository;
 
     @Autowired
-    public UserService(UserJPA userJPA) {
-        this.userJPA = userJPA;
+    public UserService(UserJPA usersRepository) {
+        this.usersRepository = usersRepository;
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         LOGGER.info("user name : {}", username);
-        UserEntity user = userJPA.findByUsername(username);
+        UserEntity user = usersRepository.findByUsername(username);
         LOGGER.info("user : {}", user);
         if (user == null) {
             throw new UsernameNotFoundException("未查询到用户：" + username + "信息！");
