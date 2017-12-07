@@ -11,8 +11,6 @@
         <module>bean</module>
         <module>user</module>
         <module>pager</module>
-        <module>bean</module>
-        <module>user</module>
     </modules>
     <!--添加项目介质使用springboot构建-->
     <parent>
