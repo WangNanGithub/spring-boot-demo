@@ -40,8 +40,12 @@ public class LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
     private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
 
+    private final UserJPA usersRepository;
+
     @Autowired
-    private UserJPA usersRepository;
+    public LoginSuccessHandler(UserJPA usersRepository) {
+        this.usersRepository = usersRepository;
+    }
 
     /**
      * 登陆成功后的页面转发
@@ -64,7 +68,7 @@ public class LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
     /**
      * 刷新用户登录信息
      */
-    @Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = {Exception.class})
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = {Exception.class})
     public void saveLoginInfo(HttpServletRequest request, Authentication authentication) {
         UserEntity user = (UserEntity) authentication.getPrincipal();
         try {
@@ -101,13 +105,5 @@ public class LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
             url = "/accessDenied";
         }
         return url;
-    }
-
-    public void setRedirectStrategy(RedirectStrategy redirectStrategy) {
-        this.redirectStrategy = redirectStrategy;
-    }
-
-    protected RedirectStrategy getRedirectStrategy() {
-        return redirectStrategy;
     }
 }
