@@ -1,0 +1,29 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>测试CORS</title>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#cors").click(function () {
+                alert("跨域请求 ... ");
+                $.ajax({
+                    url: "http://192.168.0.239:8080/hello",
+                    success: function (data) {
+                        alert(data);
+                    }
+                })
+            });
+        });
+    </script>
+</head>
+<body>
+<center>
+    <image th:src="@{/image/267862-1212151Z12099.jpg}"/>
+    <br/><br/>
+    <h3><input type="button" id="cors" value="CORS跨域测试"/></h3>
+    <br/><br/>
+</center>
+</body>
+</html>

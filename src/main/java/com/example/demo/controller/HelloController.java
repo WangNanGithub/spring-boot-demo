@@ -7,27 +7,23 @@
  */
 package com.example.demo.controller;
 
-import org.springframework.stereotype.Controller;
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @author WangNan, nan.wang@htouhui.com
  * @version 1.0
  * @date 2017年12月07日
  */
-@Controller
-public class IndexController {
+@RestController
+@RequestMapping("/")
+public class HelloController {
 
-    @RequestMapping("/index")
-    public String index() {
-        System.out.println("IndexController index ... ");
-        return "index";
-    }
-
-    @RequestMapping("/home")
-    public String home() {
-        System.out.println("IndexController home ... ");
-        return "home";
+    @RequestMapping("hello")
+    public String hello() {
+        System.out.println(ResourceUtils.CLASSPATH_URL_PREFIX);
+        return "This is a CORS request";
     }
 
 }

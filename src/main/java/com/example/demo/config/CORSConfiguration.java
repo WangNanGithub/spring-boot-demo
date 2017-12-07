@@ -28,6 +28,10 @@ public class CORSConfiguration extends WebMvcConfigurerAdapter {
      */
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        super.addCorsMappings(registry);
+         registry
+                .addMapping("/**")
+                .allowedMethods("*")
+                .allowedOrigins("*")
+                .allowedHeaders("*");
     }
 }
