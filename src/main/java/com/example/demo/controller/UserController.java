@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.bean.UserBean;
 import com.example.demo.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
  * ========================
  */
 @RestController
+@Slf4j
 public class UserController {
     //用户业务逻辑实现
     @Autowired
@@ -32,6 +34,7 @@ public class UserController {
     public String register (UserBean user) {
         //调用注册业务逻辑
         userService.register(user);
+        log.info("user name : {}", user.getName());
         return "注册成功.";
     }
 }
